@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
     });
 });
 
+
+// Verfikasi token JWT
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -49,6 +51,8 @@ const verifyToken = (req, res, next) => {
     }
 };
 
+
+
 app.get("/api/test-db", async (req, res) => {
     const { data, error } = await supabase
         .from("users")
@@ -69,6 +73,7 @@ app.get("/api/test-db", async (req, res) => {
     });
 });
 
+// Endpoint untuk registrasi user
 app.post("/api/register", async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -144,6 +149,8 @@ app.post("/api/register", async (req, res) => {
     });
 });
 
+
+// Endpoint untuk login user
 app.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
 
@@ -207,6 +214,8 @@ app.post("/api/login", async (req, res) => {
     });
 });
 
+
+// Endpoint untuk mengambil data profile user
 app.get("/api/profile", verifyToken, async (req, res) => {
     const { data, error } = await supabase
         .from("users")
