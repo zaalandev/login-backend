@@ -1,10 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 app.use(express.json());
 
@@ -72,6 +76,7 @@ app.get("/api/test-db", async (req, res) => {
         data: data
     });
 });
+
 
 // Endpoint untuk registrasi user
 app.post("/api/register", async (req, res) => {
